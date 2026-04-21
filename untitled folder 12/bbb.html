@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>6 Image Full View With Names</title>
+
+<style>
+/* GRID OF IMAGES */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 20px;
+}
+
+.image-box {
+  text-align: center;
+}
+
+.click-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.image-name {
+  margin-top: 8px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* POPUP BACKGROUND */
+.popup {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.8);
+  padding-top: 50px;
+  text-align: center;
+}
+
+/* FULL IMAGE */
+.popup-content {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 10px;
+}
+
+/* CLOSE BUTTON */
+#closeBtn {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  color: white;
+  font-size: 40px;
+  cursor: pointer;
+}
+</style>
+
+</head>
+<body>
+
+<h2 style="text-align:center;">Click any image to view in full size</h2>
+
+<!-- 6 IMAGES WITH NAMES -->
+<div class="gallery">
+
+  <div class="image-box">
+    <img src="001.jpg" class="click-image">
+    <div class="image-name">Success Siryon AGE 10</div>
+  </div>
+
+  <div class="image-box">
+    <img src="002.jpg" class="click-image">
+    <div class="image-name">Elizibeth Waka AGE 10</div>
+  </div>
+
+  <div class="image-box">
+    <img src="003.jpg" class="click-image">
+    <div class="image-name">Group photo</div>
+  </div>
+
+  <div class="image-box">
+    <img src="004.jpg" class="click-image">
+    <div class="image-name">Salomie Solomo 10</div>
+  </div>
+
+  <div class="image-box">
+    <img src="005.jpg" class="click-image">
+    <div class="image-name">Linda Duodeh AGE 13</div>
+  </div>
+
+  <div class="image-box">
+    <img src="006.jpg" class="click-image">
+    <div class="image-name">Neomie Solomo AGE 5</div>
+  </div>
+
+</div>
+
+<!-- POPUP -->
+<div id="popup" class="popup">
+  <span id="closeBtn">&times;</span>
+  <img id="popupImg" class="popup-content">
+</div>
+
+<script>
+let popup = document.getElementById("popup");
+let popupImg = document.getElementById("popupImg");
+let closeBtn = document.getElementById("closeBtn");
+let images = document.querySelectorAll(".click-image");
+
+// Open popup with clicked image
+images.forEach(img => {
+  img.onclick = function() {
+    popup.style.display = "block";
+    popupImg.src = this.src;
+  };
+});
+
+// Close popup
+closeBtn.onclick = function() {
+  popup.style.display = "none";
+};
+
+// Close when clicking background
+popup.onclick = function(e) {
+  if (e.target === popup) {
+    popup.style.display = "none";
+  }
+};
+</script>
+
+</body>
+</html>
